@@ -13,6 +13,3 @@ class FoodCategoryListAPIView(generics.ListAPIView):
         )
         print(queryset.query)
         return queryset
-
-
-
