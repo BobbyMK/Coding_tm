@@ -11,5 +11,4 @@ class FoodCategoryListAPIView(generics.ListAPIView):
         queryset = FoodCategory.objects.filter(food__is_publish=True).distinct().prefetch_related(
             Prefetch('food', queryset=Food.objects.filter(is_publish=True))
         )
-        print(queryset.query)
         return queryset
