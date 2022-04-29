@@ -2,7 +2,6 @@ from rest_framework import serializers
 from response.models import Food, FoodCategory
 
 class FilteredListSerializer(serializers.ListSerializer):
-
     def to_representation(self, data):
         data = data.filter(is_publish=True)
         return super(FilteredListSerializer, self).to_representation(data)
