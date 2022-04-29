@@ -1,17 +1,10 @@
 from rest_framework import serializers
 from response.models import Food, FoodCategory
 
-class FilteredListSerializer(serializers.ListSerializer):
-
-    def to_representation(self, data):
-        data = data.filter(is_publish=True)
-        return super(FilteredListSerializer, self).to_representation(data)
-
 class FoodSerializer(serializers.ModelSerializer):
     additional = serializers.SlugRelatedField(many=True, read_only=True, slug_field='internal_code')
 
     class Meta:
-        list_serializer_class = FilteredListSerializer
         model = Food
         fields = ('internal_code', 'code', 'name_ru', 'description_ru', 'description_en',
                   'description_ch', 'is_vegan', 'is_special', 'cost', 'additional')
